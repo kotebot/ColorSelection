@@ -306,6 +306,7 @@ namespace ShermanLibr
             }
         }
 
+
         public void StopTimer()
         {
             StopAllCoroutines();
@@ -315,7 +316,7 @@ namespace ShermanLibr
         {
             TimerF = 0;
             Timer = true;
-            while(time!=-1)
+            while (time != -1)
             {
                 if (Stop)
                 {
@@ -324,13 +325,14 @@ namespace ShermanLibr
                     yield return null;
                 }
                 Debug.Log(time);
-                TimerF=time--;
+                TimerF = time--;
                 yield return new WaitForSeconds(1);
             }
             Debug.Log("Finish");
             Timer = false;
 
         }
+
 
         public void StopwatchStop()
         {

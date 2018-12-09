@@ -1,33 +1,34 @@
+﻿
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ShermanLibr;
 
-public class StopwatchSystem : MonoBehaviour {
+public class StopwatchSystem : MonoBehaviour
+{
 
     public static StopwatchSystem instance;
-    public int time=10;
+    public int time = 10;
     [HideInInspector]
     public static ShermanLibr.Time timer;
 
-	void Start () {
+    void Start()
+    {
         instance = this;
         timer = (new GameObject("timer")).AddComponent<ShermanLibr.Time>();
         StartCoroutine(timer.TimerStart(10));
-	}
+    }
 
     public void UpdateTimer()
     {
-        timer.StopAllCoroutines();
         Destroy(GameObject.Find("timer"));
         timer = (new GameObject("timer")).AddComponent<ShermanLibr.Time>();
-        timer.Stop=true;
 
     }
 
     private void Update()
     {
-        if(!ColorSystem.instance.loose)
+        if (!ColorSystem.instance.loose)
             UIManager.instance.time.text = timer.ToStringTimer();
         if (timer.TimerF < 4)
             UIManager.instance.time.color = new Color32(212, 65, 65, 255);
@@ -38,7 +39,7 @@ public class StopwatchSystem : MonoBehaviour {
             ColorSystem.instance.loose = true;
             ColorSystem.instance.Loose();
         }
-            
+
     }
 
 }

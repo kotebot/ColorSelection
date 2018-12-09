@@ -34,7 +34,23 @@ public class ColorSystem : MonoBehaviour {
         instance = this;
         Procent++;
         UpdateColor();
+
         
+        
+    }
+
+    private void Start()
+    {
+        if (MusicSystem.Instance.background.mute == true)
+        {
+            On.SetActive(false);
+            Off.SetActive(true);
+        }
+        else
+        {
+            On.SetActive(true);
+            Off.SetActive(false);
+        }
     }
 
     private void Update()
@@ -87,8 +103,8 @@ public class ColorSystem : MonoBehaviour {
         if(!loose)
         {
             StopwatchSystem.instance.UpdateTimer();
-            
-            StartCoroutine(StopwatchSystem.timer.TimerStart(15));
+
+            StartCoroutine(StopwatchSystem.timer.TimerStart(StopwatchSystem.instance.time));
             if (NumBlock == this.NumBlock)
             {
                 MusicSystem.Instance.choose.Play();
@@ -119,15 +135,15 @@ public class ColorSystem : MonoBehaviour {
         {
             On.SetActive(false);
             Off.SetActive(true);
-            MusicSystem.Instance.background.volume = 0;
-            MusicSystem.Instance.choose.volume = 0;
+            MusicSystem.Instance.background.mute=true;
+            MusicSystem.Instance.choose.mute = true;
         }
         else
         {
             On.SetActive(true);
             Off.SetActive(false);
-            MusicSystem.Instance.background.volume = 0.832f;
-            MusicSystem.Instance.choose.volume = 0.627f;
+            MusicSystem.Instance.background.mute = false;
+            MusicSystem.Instance.choose.mute = false;
         }
     }
 }
