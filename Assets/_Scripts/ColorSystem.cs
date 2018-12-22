@@ -24,10 +24,10 @@ public class ColorSystem : MonoBehaviour {
     [HideInInspector]
     public byte p;
 
-    //[HideInInspector]
+   // [HideInInspector]
     public bool loose;
-
-    private bool flag;
+    [HideInInspector]
+    public bool flag;
 
     private void Awake()
     {
@@ -58,9 +58,11 @@ public class ColorSystem : MonoBehaviour {
         if (loose)
         {
             finishPanel.SetActive(true);
-            if(!flag)
+            if (Ad.instance.countAd > 2)
+                UIManager.instance.playAd.SetActive(false);
+            if (!flag)
             {
-                finsih.Play();
+                finsih.Play("ScoreFinish");
                 flag = true;
             }
            
@@ -71,6 +73,10 @@ public class ColorSystem : MonoBehaviour {
     public void UpdateColor()
     {
         Procent--;
+        if(Procent<=1)
+        {
+            Procent = 1;
+        }
         NumBlock = Random.Range(0, 4);
         p = (byte)(255 / 100 * Procent);
         MainBlock.color = RandomColor();

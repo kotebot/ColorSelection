@@ -320,15 +320,12 @@ namespace ShermanLibr
             {
                 if (Stop)
                 {
-                    Debug.Log("Stop");
                     Stop = false;
                     yield return null;
                 }
-                Debug.Log(time);
                 TimerF = time--;
                 yield return new WaitForSeconds(1);
             }
-            Debug.Log("Finish");
             Timer = false;
 
         }

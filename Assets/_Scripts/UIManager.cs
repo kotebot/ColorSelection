@@ -11,9 +11,11 @@ public class UIManager : MonoBehaviour {
     public TextMeshProUGUI score;
     public TextMeshProUGUI maxScore;
     public TextMeshProUGUI time;
+    public GameObject playAd;
 
     void Awake () {
         instance = this;
+        
 	}
 	
 	// Update is called once per frame
